@@ -400,8 +400,8 @@ public class RegisterServlet extends HttpServlet {
         UserService userService = (UserService) ac.getBean("userService");
         User user = new User(loginName,loginPwd,realName);
         int count = 0;
-        if (loginName!=null || loginPwd!=null ||realName!=null
-            || loginName!=""|| loginPwd!="" ||realName!=""
+        if (loginName!=null && loginPwd!=null && realName!=null
+            && loginName!=""&& loginPwd!="" &&realName!=""
         ){
             count = userService.addUser(user);
         }
