@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--    把包括切面类的所有对象交给容器生成和管理等-->
+<!--    声明目标对象-->
+    <bean id="someService" class="com.studymyself.bao01.SomeServiceImpl"/>
+    <bean id="someService2" class="com.studymyself.bao02.SomeServiceImpl"/>
+    <bean id="someService3" class="com.studymyself.bao03.SomeServiceImpl"/>
+    <bean id="someService4" class="com.studymyself.bao04.SomeServiceImpl"/>
+
+<!--    声明切面类对象-->
+    <bean id="myAspect" class="com.studymyself.bao01.MyAspectJ"/>
+    <bean id="myAspect2" class="com.studymyself.bao02.MyAspectJ"/>
+    <bean id="myAspect3" class="com.studymyself.bao03.MyAspectJ"/>
+    <bean id="myAspect4" class="com.studymyself.bao04.MyAspectJ"/>
+
+<!--    声明自动代理生成器：使用AspectJ框架的内部功能创建目标对象的代理对象-->
+<!--    创建代理对象是在内存中实现的，原理是修改目标对象的内存结构，然后作为-->
+<!--    代理对象，所以代理对象就是修改后的目标对象，获取的方法和获取目标对象-->
+<!--    的方式不变。-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+<!--    aspectj-autoproxy启动后就会扫描Spring容器中的所有对象，用反射机制获取这些对象中的AspectJ-->
+<!--    框架中的注解，如@Aspect，根据该注解的判断哪些对象是切面对象；通知注解如@Before，由该注解-->
+<!--    中的value属性判定是否是目标类，读取注解中的切入点表达式，获取切入点的类名-->
+<!--    从而判断Spring容器中那些对象是目标类对象，然后为其生成代理对象。-->
+<!--    所以会把Spring容器中所有需要添加切面目标类对象一次性全部生成代理对象-->
+</beans>

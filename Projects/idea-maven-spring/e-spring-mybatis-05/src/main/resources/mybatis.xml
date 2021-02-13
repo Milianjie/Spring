@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!--注意这些属性设置从上往下是有顺序的，写反就会报错-->
+
+    <!--配置属性资源文件-->
+    <properties resource="jdbc.properties"/>
+
+    <!--该属性的作用：控制mybatis全局行为,
+        顺序要在上面的properties属性下面-->
+    <settings>
+        <!--设置mybatis输出日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--给这个包下的所有类起别名-->
+    <typeAliases>
+        <package name="com.studymyself.entity"/>
+    </typeAliases>
+
+    <!--配置插件-->
+<!--    <plugins>-->
+<!--        &lt;!&ndash;分页插件&ndash;&gt;-->
+<!--        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>-->
+<!--    </plugins>-->
+
+
+    <mappers>
+        <!--第一种方式-->
+        <!-- <mapper resource="mapper文件的类根路径"/>-->
+
+        <!--第二种方式：使用包名
+            其中name属性的值：mapper文件所在的包名
+            使用package的条件：
+                1、mapper文件的名称要和接口的名称一致，包括大小写一致
+                2、mapper文件要和接口在同一个目录之中-->
+        <package name="com.studymyself.dao"/>
+    </mappers>
+</configuration>

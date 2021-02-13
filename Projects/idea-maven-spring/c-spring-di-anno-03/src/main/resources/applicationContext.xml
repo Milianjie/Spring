@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+        当我们添加组件扫描器后上面的配置信息变化：
+        1、在xsi:schemaLocation=""的引号中加入了另一个新的约束文件：
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        2、给这个新的约束文件在命名空间起个名称：
+        xmlns:context="http://www.springframework.org/schema/context"
+        其中名称前面的context表示该约束文件的前缀，由于Spring框架很大，为了避免
+        配置文件中标签名重复，在每个约束文件的命名空间前添加一个前缀，来区分是哪
+        个约束文件的标签。
+        如下面的组件扫描标签前面添加context：就可以知道该标签是来自哪个命名空间了
+    -->
+    <!--
+        声明组件扫描器（component-scan):component的意思是组件，组件就是对象的意思
+        该扫描器标签中有一个属性：base-package="xxx"
+        表示指定扫描器到那个包中扫描注解的，里面就是包的路径
+        配置好包路径后启动项目扫描器就会把这个包和其子包中的所有类进行扫描，看看那个类中有注解
+        将有注解的类按照注解的功能创建对象，或者是赋值等等
+    -->
+    <context:component-scan base-package="com.studymyself"/>
+
+    <!--三种方式指定多个包
+        第一种：使用多个component-scan标签来指定多个包
+        第二种：在base-package属性值中填写每个包的路径，每条包路径使用;或，来分隔
+        第四种：在base-package属性值指定一个父类包路径，但不要指定根父类，不然会
+                由于扫描文件过多，降低项目启动效率
+    -->
+    <context:property-placeholder location="com.test.propertis"/>
+</beans>

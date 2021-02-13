@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.studymyself</groupId>
+  <artifactId>e-spring-mybatis-05</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+<!--    单元测试依赖-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+
+<!--    spring依赖，核心IOC-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.2.5.RELEASE</version>
+    </dependency>
+<!--    下面两个做Spring事务的jar包,因为要访问数据库，事务相关-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>5.2.5.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.2.5.RELEASE</version>
+    </dependency>
+
+<!--    mybatis依赖-->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.5.3</version>
+    </dependency>
+
+<!--    mybatis和Spring集成的依赖,由mybatis官方提供-->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>2.0.3</version>
+    </dependency>
+
+<!--    mysql驱动依赖-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.13</version>
+    </dependency>
+
+<!--      阿里数据源依赖-->
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>druid</artifactId>
+          <version>1.1.20</version>
+      </dependency>
+  </dependencies>
+
+
+  <build>
+<!--   因为mybatis的dao层存放映射文件，不放在resources目录下，所以要加resource插件指定扫描-->
+    <resources>
+      <resource>
+        <!--表示编译时在src/main/java目录下的-->
+        <directory>src/main/java</directory>
+        <!--所有properties、xml类型的文件可以被扫描到,然后拷贝到编译生成文件夹的对应目录中-->
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <!--filtering的值false表示不启用过滤器，上面include已经是过滤操作了-->
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+  </build>
+</project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.studymyself.dao.GoodsDao">
+
+    <select id="selectByIdAndName" resultType="Goods">
+        select id,name,amount,price from t_goods where id=#{gid} and name=#{gname}
+    </select>
+
+    <update id="updateAmount">
+        update t_goods set amount = amount - #{nums} where id = #{gid} and name=#{gname}
+    </update>
+
+</mapper>

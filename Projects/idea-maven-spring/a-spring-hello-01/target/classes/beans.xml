@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        告诉Spring创建哪个类的对象，叫做：
+        声明bean，就是告诉Spring要创建某个类的的对象，使用<bean>标签
+        id:表示Spring创建的这个对象的名称，自定义的，唯一的。
+           当我们要使用该对象时把这个id，Spring就根据该id查找对应的对象交给我们
+        class：类的全限定名称，Spring获取类的完整类名就可以获取该类的Class对象，
+               然后通过反射机制创建这个类的对象，所以不能填接口的全限定名
+    -->
+    <bean id="someService" class="com.studymyself.service.impl.SomeServiceImpl"/>
+    <!--
+        底层实现：
+        Class someServiceImpl = Class.forName(com.studymyself.service.impl.SomeServiceImpl);
+        SomeService someService = someService.newInstance();
+        spring中有专门存放bean的Map集合
+        springMap.put(id的值，创建的对象),如
+        springMap.put("someService",someService.newInstance());
+    -->
+
+    <!--配置非自定义的类如常用类，让Spring创建该类对象-->
+    <!--Date类-->
+    <bean id="myDate" class="java.util.Date"/>
+    <!--String类-->
+    <bean id="myString" class="java.lang.String"/>
+
+</beans>
+
+<!--
+    Spring配置文件说明：
+        1、<beans>：是根标签，复数，所以该标签中有许多<bean>标签，每一个<bean>标签中配置一个java类信息
+            Spring将Java对象定义为bean，一个bean就是一个Java对象
+        2、上面中的spring-beans.xsd 是一个约束文件，和mybatis的核心配置文件中的dtd文件一样。
+-->

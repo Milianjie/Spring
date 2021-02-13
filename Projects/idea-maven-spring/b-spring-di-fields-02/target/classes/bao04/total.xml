@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        total.xml表示主配置文件：用来包含其他配置文件，一般定义对象
+        包含语法：
+        <import resource="classpath:其他配置文件路径"/>
+        关键字classpath解析：
+        加上该关键字表示让Spring从项目的类根路径中开始扫描，而其他配置文件
+        路径应该放在类根路径之下
+    -->
+
+    <!--第一种方式加载所有配置文件：文件列表方式，一个一个写上去-->
+<!--    <import resource="classpath:bao04/spring-school.xml"/>-->
+<!--    <import resource="classpath:bao04/spring-student04.xml"/>-->
+
+    <!--第二种用通配符*的方式，*代表任意字符
+        这种方式要求多个配置文件需要放到同一个目录下才能发挥大效用
+        而且不能写*.xml，因为这样包含了主配置文件，会让Spring进入
+        扫描文件的死循环-->
+    <import resource="classpath:bao04/spring-*.xml"/>
+</beans>

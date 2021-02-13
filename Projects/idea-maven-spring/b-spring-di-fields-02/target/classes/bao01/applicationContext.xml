@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        声明Student1对象
+        di给属性赋值：
+        set注入：
+            1、简单类型的属性set注入：
+            <bean id="xx" class="yyy">
+                <property name="属性名字" value="该属性的值"/>
+                <property .../>
+            </bean>
+            注意：
+            1、一个property标签只能给一个属性注入，多个属性要用到多个标签
+            2、标签中的name属性的值是对象类中set方法中参数的名字，不是属性的名字，但是
+            开发中java类中的所有属性的set方法中的参数名都是跟其对应的属性名是一样的，
+            所以name就填属性名
+            3、一定要记住的是，Spring只是调用对象类中的set方法，无论是否有没有属性被赋值
+            只要你提供了set方法中的参数名，以及给定的值，还有该对象中一定有对应的set方法
+            Spring就不会报错
+            4、记住xml中属性的值都是用双引号括起来的，即使参数值的类型是int类型
+            也不例外，只不过到时注入的时候，判断是int类型，调用String类中的valueOf
+            方法将数字字符串转换成int类型
+    -->
+    <bean id="student01" class="com.studymyself.bao01.Student01">
+        <property name="name" value="赵四"/>
+        <property name="age" value="40"/>
+    </bean>
+
+</beans>
